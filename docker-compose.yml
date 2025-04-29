@@ -1,0 +1,7 @@
+version: '3'
+services:
+  atm:
+    build: .
+    container_name: atm_app
+    stdin_open: true
+    tty: true
