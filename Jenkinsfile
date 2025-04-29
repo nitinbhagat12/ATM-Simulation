@@ -17,15 +17,14 @@ pipeline {
             steps {
                 sh '''
                     mkdir -p out
-                    javac -d out $(find . -name "*.java")
+                    javac -d out *.java
                 '''
             }
         }
 
-        stage('Run Main Class') {
+        stage('Run Application') {
             steps {
-                // Replace 'MainClass' with your actual main class (e.g., ATMMain, ATMApp, etc.)
-                sh 'java -cp out MainClass'
+                sh 'java -cp out Main'
             }
         }
 
@@ -37,8 +36,11 @@ pipeline {
     }
 
     post {
+        success {
+            echo 'Build and execution succeeded.'
+        }
         failure {
-            echo 'Build failed!'
+            echo 'Build or execution failed.'
         }
     }
 }
